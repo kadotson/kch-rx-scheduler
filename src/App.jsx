@@ -297,7 +297,93 @@ export default function EmployeeSchedulingApp() {
       </div>
     </div>
   );
-}con={Briefcase} title="Staffing spots needed"><div className="space-y-4"><div className="grid gap-3 md:grid-cols-3"><Field label="Location"><select value={needLocation} onChange={(e) => setNeedLocation(e.target.value)} className={inputClass()}>{locations.map((location) => <option key={location}>{location}</option>)}</select></Field><Field label="Job title"><select value={needJobTitle} onChange={(e) => setNeedJobTitle(e.target.value)} className={inputClass()}><option>Pharmacist</option><option>Technician</option></select></Field><Field label="Spots"><input type="number" value={needCount} onChange={(e) => setNeedCount(e.target.value)} className={inputClass()} /></Field></div><Button onClick={updateStaffingNeed}>Update Need</Button></div></Section></div>}
+}con={Briefcase} title="Staffing spots needed"><div className="space-y-4"><div className="grid gap-3 md:grid-cols-3"><Field label="Location"><select value={needLocation} onChange={(e) => setNeedLocation(e.target.value)} className={inputClass()}>{locations.map((location) => <option key={location}>{location}</option>)}</select></Field><Field label="Job title"><select value={needJobTitle} onChange={(e) => setNeedJobTitle(e.target.value)} className={inputClass()}><option>Pharmacist</option><option>Technician</option></select></Field><Field label="Spots"><input type="number" value={needCount} onChange={(e) => setNeedCount(e.target.value)} className={inputClass()} /></Field></div><Button onClick={updateStaffingNeed}>Update Need</Button></div></Section><Section icon={User} title="Employee management">
+  <div className="space-y-4">
+    <div className="grid gap-3 md:grid-cols-2">
+
+      <Field label="Employee name">
+        <input
+          value={newEmployeeName}
+          onChange={(e) => setNewEmployeeName(e.target.value)}
+          placeholder="Enter employee name"
+          className={inputClass()}
+        />
+      </Field>
+
+      <Field label="Job title">
+        <select
+          value={newEmployeeJobTitle}
+          onChange={(e) => setNewEmployeeJobTitle(e.target.value)}
+          className={inputClass()}
+        >
+          <option>Pharmacist</option>
+          <option>Technician</option>
+        </select>
+      </Field>
+
+      <Field label="Home location">
+        <select
+          value={newEmployeeHomeLocation}
+          onChange={(e) => setNewEmployeeHomeLocation(e.target.value)}
+          className={inputClass()}
+        >
+          {locations.map((location) => (
+            <option key={location}>{location}</option>
+          ))}
+        </select>
+      </Field>
+
+      <Field label="Color tag">
+        <select
+          value={newEmployeeColor}
+          onChange={(e) => setNewEmployeeColor(e.target.value)}
+          className={inputClass()}
+        >
+          <option value="blue">Blue</option>
+          <option value="purple">Purple</option>
+          <option value="green">Green</option>
+          <option value="yellow">Yellow</option>
+          <option value="red">Red</option>
+        </select>
+      </Field>
+
+    </div>
+
+    <Button onClick={addEmployee}>
+      <Plus className="h-4 w-4" />
+      Add Employee
+    </Button>
+
+    <div className="space-y-2">
+      {employees.map((employee) => (
+        <div
+          key={employee.id}
+          className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 p-3 text-sm ring-1 ring-slate-200"
+        >
+          <div>
+            <div className="font-semibold">
+              {employee.name}
+            </div>
+
+            <div className="text-slate-500">
+              {employee.jobTitle} • {employee.homeLocation}
+            </div>
+          </div>
+
+          <button
+            onClick={() => removeEmployee(employee.name)}
+            className="text-xs font-semibold text-rose-600"
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</Section>
+</div>}
+
       </div>
     </div>
   );
